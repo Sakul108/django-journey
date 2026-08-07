@@ -1,0 +1,15 @@
+{% extends "layout.html"%}
+{%block title%}
+certificates
+{%endblock%}
+{%block content%}
+<p>
+    {{item.name}}
+</p>
+<p>
+    certificate
+</p>
+<p> Certificate:{{certificate.certifcate}}</p>
+<p>Issued Date:{{certificate.issued_date}}</p>
+<p>Valid:{{certificate.valid_Date}}</p>
+{%endblock%}

@@ -1,4 +1,296 @@
 {% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+Home | MediCare Hospital
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    /* HERO SECTION WITH BACKGROUND IMAGE */
+    .hms-hero {
+        /* Dark/Teal semi-transparent overlay + Background Image */
+        background: linear-gradient(rgba(15, 118, 110, 0.75), rgba(8, 145, 178, 0.75)), 
+                    url("{% static 'images/Hospital.png' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff;
+        padding: 120px 20px; /* Increased padding to give the background room */
+        text-align: center;
+        border-radius: 0 0 40px 40px;
+    }
+
+    .hms-hero-content {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    .hms-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    .hms-hero p {
+        font-size: 1.2rem;
+        opacity: 0.95;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+    }
+
+    .hms-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        margin: 6px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hms-btn-primary {
+        background: #fff;
+        color: #0f766e;
+    }
+
+    .hms-btn-outline {
+        border: 2px solid #fff;
+        color: #fff;
+    }
+
+    .hms-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* REST OF YOUR STYLES */
+    .hms-section {
+        max-width: 1100px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .hms-section h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+
+    .hms-section p.subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 40px;
+    }
+
+    .hms-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+    }
+
+    .hms-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        border-top: 4px solid #0891b2;
+    }
+
+    .hms-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+
+    .hms-card i {
+        font-size: 2.2rem;
+        color: #0891b2;
+        margin-bottom: 15px;
+    }
+
+    .hms-card h3 {
+        font-size: 1.15rem;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+
+    .hms-card p {
+        color: #64748b;
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+
+    .product-img-container {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        background-color: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hms-stats {
+        background: #f0fdfa;
+        border-radius: 20px;
+        padding: 40px 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        text-align: center;
+    }
+
+    .hms-stats .stat h2 {
+        color: #0891b2;
+        font-size: 2.2rem;
+        margin: 0;
+    }
+
+    .hms-stats .stat span {
+        color: #475569;
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION START ================= -->
+<section class="hms-hero">
+    <div class="hms-hero-content">
+        <h1><i class="fa-solid fa-heart-pulse"></i> MediCare Hospital</h1>
+        <p>Compassionate care, advanced technology, and a team dedicated to your family's health — every hour of every day.</p>
+        <a href="{% url 'contact' %}" class="hms-btn hms-btn-primary">Book Appointment</a>
+        <a href="{% url 'about' %}" class="hms-btn hms-btn-outline">Learn More</a>
+    </div>
+</section>
+<!-- ================= HERO SECTION END ================= -->
+
+<section class="hms-section">
+    <h2>Featured Products</h2>
+    <p class="subtitle">Explore our latest equipment and products</p>
+    
+    <div class="hms-cards">
+        {% for item in products %}
+            <div class="hms-card">
+                <div class="product-img-container">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                    {% else %}
+                        <i class="fa-solid fa-box-open" style="font-size: 3rem; color: #cbd5e1;"></i>
+                    {% endif %}
+                </div>
+                <h3>{{ item.name }}</h3>
+                {% if item.description %}
+                    <p>{{ item.description }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p style="grid-column: 1 / -1; text-align: center; color: #94a3b8;">No products added yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="hms-section">
+    <h2>Our Departments</h2>
+    <p class="subtitle">Specialized care across every major medical field</p>
+    <div class="hms-cards">
+        <div class="hms-card">
+            <i class="fa-solid fa-heart"></i>
+            <h3>Cardiology</h3>
+            <p>Comprehensive heart care from diagnosis to advanced surgical treatment.</p>
+        </div>
+        <div class="hms-card">
+            <i class="fa-solid fa-brain"></i>
+            <h3>Neurology</h3>
+            <p>Expert treatment for conditions of the brain, spine, and nervous system.</p>
+        </div>
+        <div class="hms-card">
+            <i class="fa-solid fa-truck-medical"></i>
+            <h3>Emergency</h3>
+            <p>24/7 emergency response with rapid triage and critical care units.</p>
+        </div>
+        <div class="hms-card">
+            <i class="fa-solid fa-baby"></i>
+            <h3>Pediatrics</h3>
+            <p>Gentle, specialized care for infants, children, and adolescents.</p>
+        </div>
+        <div class="hms-card">
+            <i class="fa-solid fa-bone"></i>
+            <h3>Orthopedics</h3>
+            <p>Treatment for bones, joints, ligaments, and sports-related injuries.</p>
+        </div>
+        <div class="hms-card">
+            <i class="fa-solid fa-tooth"></i>
+            <h3>Dental Care</h3>
+            <p>Complete dental services from routine checkups to surgery.</p>
+        </div>
+    </div>
+</section>
+
+<section class="hms-section">
+    <div class="hms-stats">
+        <div class="stat">
+            <h2>50+</h2>
+            <span>Expert Doctors</span>
+        </div>
+        <div class="stat">
+            <h2>200+</h2>
+            <span>Hospital Beds</span>
+        </div>
+        <div class="stat">
+            <h2>15k+</h2>
+            <span>Patients Treated</span>
+        </div>
+        <div class="stat">
+            <h2>24/7</h2>
+            <span>Emergency Service</span>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends "layout.html" %}
 
 {% block title %}
 Home | MediCare Hospital
@@ -98,6 +390,24 @@ Home | MediCare Hospital
         line-height: 1.5;
     }
 
+    /* Styling for Product Images */
+    .product-img-container {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        background-color: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .product-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .hms-stats {
         background: #f0fdfa;
         border-radius: 20px;
@@ -127,6 +437,33 @@ Home | MediCare Hospital
     <a href="{% url 'contact' %}" class="hms-btn hms-btn-primary">Book Appointment</a>
     <a href="{% url 'about' %}" class="hms-btn hms-btn-outline">Learn More</a>
 </section>
+
+<!-- ================= PRODUCT SECTION START ================= -->
+<section class="hms-section">
+    <h2>Featured Products</h2>
+    <p class="subtitle">Explore our latest equipment and products</p>
+    
+    <div class="hms-cards">
+        {% for item in products %}
+            <div class="hms-card">
+                <div class="product-img-container">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                    {% else %}
+                        <i class="fa-solid fa-box-open" style="font-size: 3rem; color: #cbd5e1;"></i>
+                    {% endif %}
+                </div>
+                <h3>{{ item.name }}</h3>
+                {% if item.description %}
+                    <p>{{ item.description }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p style="grid-column: 1 / -1; text-align: center; color: #94a3b8;">No products added yet.</p>
+        {% endfor %}
+    </div>
+</section>
+<!-- ================= PRODUCT SECTION END ================= -->
 
 <section class="hms-section">
     <h2>Our Departments</h2>
@@ -186,32 +523,4 @@ Home | MediCare Hospital
     </div>
 </section>
 
-{% endblock %}
-
-
-{% comment %} {% extends "layout.html" %}
-
-{% block title %}
-Ganesha
-{%endblock%}
-{%block css %}
-{%endblock %}
-{%block content%}
-<p style="color: pink;">this is home page</p>
-
-{%endblock%} {% endcomment %}
-
-
-{% comment %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href={% static "styles.css" %}>
-</head>
-<body>
-    <h1> Shree Ganesha</h1>
-</body>
-</html> {% endcomment %}
+{% endblock %} {% endcomment %}

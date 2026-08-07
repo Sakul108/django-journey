@@ -1,10 +1,12 @@
 {% extends "layout.html"%}
 {% block content%}
-{% for item in products%}
+{% for item in products %}
 <div>
     <p>{{item.name}}</p>
     <img src="{{item.image.url}}" alt="">
     <p>{{item.description}} </p>
+    <p>type:{{item.get_type_display}}</p>
+    <a href={%url 'details' item.id %}> Read more </a>
 </div>
 {%endfor%}
 {%endblock%}

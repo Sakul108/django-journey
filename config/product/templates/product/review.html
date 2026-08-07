@@ -1,0 +1,27 @@
+{%extends "layout.html"%}
+{%block title%}
+review
+{%endblock%}
+
+{%block content%}
+<h1>
+    {{item.name}}
+</h1>
+<h2>
+    review
+</h2>
+
+{% for review in reviews %}
+<div>
+    <p>{{review.user.username}}</p>
+    <p>rating:{{review.rating}}</p>
+    <p>
+       comment:{{review.comment}}
+    </p>
+    <p>
+        date:{{review.added_date}}
+    </p>
+</div>
+{%endfor%}
+<a href={% url 'details' item.id%} >Read more </a>
+{%endblock%}

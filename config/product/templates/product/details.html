@@ -1,0 +1,23 @@
+{%extends 'layout.html'%}
+{%block title%}
+details
+{%endblock%}
+
+
+{%block content%}
+<div>
+<p>{{item.name}}</p>
+<img src= "{{item.image.url}}" alt= "">
+<p>{{item.description}}</p>
+<p>type:{{item.get_type_display}}</p>
+
+<h1> stores </h1>
+<ul>
+{%for store in items.stores.all %}
+<li>{{store.name}}.{{store.location}}</li>
+{%endfor%}
+</ul>
+<a href={%url 'reviews' item.id %}> reviews </a>
+<a href={% url 'certificates'item.id %}> certificates </a>
+</div>
+
