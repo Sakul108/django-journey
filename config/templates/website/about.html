@@ -1,158 +1,401 @@
+
+{% extends "layout.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}{% endblock %}
-    </title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #f8fafc;
-        }
-        .main-content {
-            flex: 1;
-        }
-
-        /* ---- Navbar ---- */
-        .hms-navbar {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-            padding: 14px 0;
-        }
-        .hms-navbar .navbar-brand {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #0f766e;
-        }
-        .hms-navbar .navbar-brand i {
-            color: #0891b2;
-            margin-right: 6px;
-        }
-        .hms-navbar .nav-link {
-            color: #334155;
-            font-weight: 500;
-            margin: 0 6px;
-            padding: 8px 14px !important;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        .hms-navbar .nav-link:hover,
-        .hms-navbar .nav-link.active {
-            color: #0891b2;
-            background: #f0fdfa;
-        }
-        .hms-navbar .btn-appointment {
-            background: #0891b2;
-            color: #fff;
-            font-weight: 600;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: transform 0.2s ease;
-        }
-        .hms-navbar .btn-appointment:hover {
-            background: #0f766e;
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        /* ---- Footer ---- */
-        .hms-footer {
-            background: #0f172a;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 25px 15px;
-            margin-top: 40px;
-        }
-        .hms-footer a {
-            color: #5eead4;
-            text-decoration: none;
-        }
-        .hms-footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-    </style>
-
-    {% block css %}{% endblock %}
-</head>
-<body>
-
-    <nav class="navbar navbar-expand-lg hms-navbar sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <i class="fa-solid fa-heart-pulse"></i>MediCare
-            </a>
-
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'services' %}">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'team' %}">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                        <a class="btn-appointment nav-link d-inline-block" href="{% url 'contact' %}">Book Appointment</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-content">
-        {% block content %}
-        {% endblock %}
-    </div>
-
-    <footer class="hms-footer">
-        <p>&copy; {% now "Y" %} MediCare Hospital. All rights reserved. | Built with <a href="#">Django</a></p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf" crossorigin="anonymous"></script>
-</body>
-</html>
-
-
-{% comment %} {% extends "layout.html"%}
-{%block title%}
-about
+{% block title %}
+About Us | MediCare Hospital
 {% endblock %}
+
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+{% endblock %}
+
 
 {% block content %}
-<p style="color: pink;">this is about page</p>
+
+<div class="about-page">
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="unique-hero">
+
+        <div class="hero-inner">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Healthcare With Purpose
+                </div>
+
+                <h1>
+                    More Than a
+                    <span>Hospital.</span>
+                </h1>
+
+                <p>
+                    MediCare Hospital brings together compassionate
+                    people, modern medical technology, and a commitment
+                    to better healthcare — creating an experience where
+                    patients feel cared for, not just treated.
+                </p>
+
+                <a href="{% url 'contact' %}" class="hero-button">
+                    Start Your Care
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+                <h3>
+                    Care Built Around You
+                </h3>
+
+                <p>
+                    Every patient has a different story.
+                    Our approach begins by listening, understanding,
+                    and providing care designed around individual needs.
+                </p>
+
+                <div class="hero-card-line"></div>
+
+                <div class="hero-mini-stats">
+
+                    <div class="mini-stat">
+                        <strong>50+</strong>
+                        <span>Expert Doctors</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>24/7</strong>
+                        <span>Emergency Care</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>200+</strong>
+                        <span>Hospital Beds</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>15k+</strong>
+                        <span>Patients Served</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         OUR STORY
+    ================================================== -->
+
+    <section class="unique-section">
+
+        <div class="story-grid">
+
+            <div class="story-image">
+
+                <img
+                    src="{% static 'images/Hospital.png' %}"
+                    alt="MediCare Hospital"
+                >
+
+                <div class="story-badge">
+
+                    <strong>24/7</strong>
+
+                    <span>
+                        Here When You Need Us
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="section-label">
+                    Our Story
+                </div>
+
+                <h2 class="section-heading">
+                    Healthcare should feel
+                    <br>
+                    <span style="color:#0891b2;">
+                        human.
+                    </span>
+                </h2>
+
+                <p class="section-description">
+                    MediCare Hospital is built around a simple idea:
+                    excellent healthcare begins with people.
+                    Our medical professionals combine expertise,
+                    technology, and empathy to create a safer and
+                    more comfortable healthcare experience.
+                </p>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            Patient First
+                        </h3>
+
+                        <p>
+                            Every decision begins with the needs,
+                            safety, and comfort of our patients.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            Modern Medicine
+                        </h3>
+
+                        <p>
+                            We embrace modern technology and
+                            innovative approaches to healthcare.
+                        </p>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            Continuous Improvement
+                        </h3>
+
+                        <p>
+                            We continuously improve our services,
+                            processes, and patient experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MISSION & VISION
+    ================================================== -->
+
+    <section class="unique-section">
+
+        <div class="section-label">
+            What Drives Us
+        </div>
+
+        <h2 class="section-heading">
+            Purpose behind
+            <span style="color:#0f766e;">
+                every treatment.
+            </span>
+        </h2>
+
+        <p class="section-description">
+            Our mission and vision shape the way we care for
+            patients, support families, and build a better
+            healthcare environment.
+        </p>
+
+
+        <div class="mission-grid">
+
+            <div class="mission-card">
+
+                <div class="mission-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <h3>
+                    Our Mission
+                </h3>
+
+                <p>
+                    To provide accessible, compassionate, and
+                    high-quality healthcare while putting the
+                    needs and comfort of our patients first.
+                </p>
+
+            </div>
+
+
+            <div class="mission-card">
+
+                <div class="mission-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <h3>
+                    Our Vision
+                </h3>
+
+                <p>
+                    To become a trusted healthcare destination
+                    recognized for excellent medical services,
+                    modern technology, and outstanding patient care.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         VALUES
+    ================================================== -->
+
+    <section class="unique-section">
+
+        <div class="section-label">
+            Our Principles
+        </div>
+
+        <h2 class="section-heading">
+            The values behind
+            <span style="color:#0891b2;">
+                our care.
+            </span>
+        </h2>
+
+
+        <div class="values-wrapper">
+
+            <div class="value">
+
+                <i class="fa-solid fa-heart"></i>
+
+                <h4>
+                    Compassion
+                </h4>
+
+                <p>
+                    Treating every person with kindness
+                    and understanding.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+                <h4>
+                    Trust
+                </h4>
+
+                <p>
+                    Building relationships through
+                    honesty and reliability.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <i class="fa-solid fa-user-doctor"></i>
+
+                <h4>
+                    Excellence
+                </h4>
+
+                <p>
+                    Striving for better medical care
+                    every single day.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <h4>
+                    Innovation
+                </h4>
+
+                <p>
+                    Using modern ideas and technology
+                    to improve healthcare.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FINAL CTA
+    ================================================== -->
+
+    <section class="unique-section">
+
+        <div class="statement">
+
+            <h2>
+                Your health.
+                Our commitment.
+            </h2>
+
+            <p>
+                From everyday healthcare to specialized treatment,
+                MediCare Hospital is here to support you and your
+                family with compassionate care and modern medical
+                services.
+            </p>
+
+            <a
+                href="{% url 'contact' %}"
+                class="statement-button"
+            >
+                <i class="fa-solid fa-calendar-check"></i>
+                Book an Appointment
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
 {% endblock %}
 
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> this is about </h1>
-</body>
-</html> {% endcomment %} 
