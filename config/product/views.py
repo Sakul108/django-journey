@@ -32,3 +32,5 @@ def details(request,pk):
         'reviews':product.reviews.all()
     }
     return render(request,'product/details.html',context)
+
+
