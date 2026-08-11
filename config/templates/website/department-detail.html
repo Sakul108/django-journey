@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+{{ department.name }} | MediCare Hospital
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    .hms-page-hero {
+        background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+        color: #fff;
+        padding: 70px 20px;
+        text-align: center;
+        border-radius: 0 0 40px 40px;
+    }
+    .hms-page-hero i { font-size: 2.6rem; margin-bottom: 12px; display: block; }
+    .hms-page-hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+
+    .hms-detail-section {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+    .hms-detail-section p {
+        color: #475569;
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+    .hms-back-link {
+        display: inline-block;
+        margin-bottom: 24px;
+        color: #0891b2;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .hms-back-link:hover { text-decoration: underline; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+     <i class="{{ department.icon }}"></i>
+    <h1>{{ department.name }}</h1>
+</section>
+
+<section class="hms-detail-section">
+    <a href="{% url 'departments' %}" class="hms-back-link">← All Departments</a>
+    <p>{{ department.description }}</p>
+</section>
+
+{% endblock %}+

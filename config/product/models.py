@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -52,6 +53,28 @@ class ProductCertification(models.Model):
 
     def __str__(self):
         return f"Certificate for {self.product.name}"
+class Department(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    icon = models.CharField(
+        max_length=50,
+        default="fa-solid fa-notes-medical",
+        help_text="Font Awesome class, e.g. fa-solid fa-heart"
+    )
+    slug = models.SlugField(unique=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "name"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+    
 
 # from django.db import models
 # from django.contrib.auth.models import User
