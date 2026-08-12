@@ -1,36 +1,48 @@
 {% extends "layout.html"%}
-{%block title%}
-contact
+{% block title %}
+Contact
 {% endblock %}
 
 {% block content %}
-<h1 style="color: #0891b2; text-align: center; ">Contact Page</h1>
+<h1 style="color: #1B2430; font-family: 'Fraunces', serif; text-align: center; margin-top: 2rem;">Contact Page</h1>
 
-<div>
-    <p style="color: #0891b2; text-align: center; ">Get Your Questions Answered Very Easily</p>
-    <p style ="text-align: center;"> You Can Fill up the form below or give us a call at this number - 098192783263  </p>
-    <form style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 40px; margin-top: 20px; padding: 0 20px; flex-wrap: wrap;">
+
+    <div>
+        <p style="color: #2eece6; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;">Get Your Questions Answered Very Easily</p>
+        <p style="text-align: center; color: #5C6773; max-width: 40ch; margin: 0.5rem auto 0;">You can fill up the form below or give us a call at this number - 098-192-783-263</p>
+
+        <form method="post" action="{% url 'contact' %}" style="max-width: 400px; margin: 20px auto 0; padding: 24px; background: #F7F4EE; border: 1px solid rgba(27,36,48,0.14); border-radius: 6px;">
+            {% csrf_token %}
+            <div style="margin-bottom: 18px;">
+                <label for="name" style="display:block; font-family:'Space Mono', monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#5C6773; margin-bottom:6px;">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required style="width:100%; border:none; border-bottom:1.5px solid rgba(27,36,48,0.14); padding:6px 0; background:transparent; outline:none; font-size:1rem; color:#1B2430;">
+            </div>
+            <div style="margin-bottom: 18px;">
+                <label for="email" style="display:block; font-family:'Space Mono', monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#5C6773; margin-bottom:6px;">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required style="width:100%; border:none; border-bottom:1.5px solid rgba(27,36,48,0.14); padding:6px 0; background:transparent; outline:none; font-size:1rem; color:#1B2430;">
+            </div>
+            <div style="margin-bottom: 18px;">
+                <label for="message" style="display:block; font-family:'Space Mono', monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#5C6773; margin-bottom:6px;">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Enter your message" required style="width:100%; border:none; border-bottom:1.5px solid rgba(27,36,48,0.14); padding:6px 0; background:transparent; outline:none; font-size:1rem; color:#1B2430; resize:none;"></textarea>
+            </div>
+            <button type="submit" style="width:100%; font-family:'Space Mono', monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; background:#1B2430; color:#F7F4EE; border:none; padding:14px; border-radius:4px; cursor:pointer;">Submit</button>
+        </form>
+    </div>
+
+    <div style="position:relative; background:#1B2430; overflow:hidden; border-radius:6px; width:600px; max-width:100%;">
+        <div style="position:absolute; top:20px; left:20px; z-index:3; background:#F7F4EE; color:#1B2430; padding:14px 18px; max-width:230px; border-radius:4px; box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+            <div style="font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600;">Kathmandu</div>
+            <div style="font-size:0.8rem; color:#5C6773; margin-top:4px;">Medicare Hospital</div>
+            <div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(27,36,48,0.14); font-family:'Space Mono', monospace; font-size:11px; display:flex; justify-content:space-between; color:#5C6773;">
+                <span>AVG AMBULANCE PICKUP</span><b style="color:#2eece6;">6 MIN</b>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
-        </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-</div>
-
-
-
-
-
-
+        <iframe
+            src="https://www.google.com/maps?q=27.7183619,85.3465045&output=embed"
+            width="600" height="450" style="border:0; display:block;" loading="lazy">
+        </iframe>
+    </div>
 
 </div>
 {% endblock %}
-    
