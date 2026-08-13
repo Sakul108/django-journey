@@ -34,6 +34,7 @@ def details(request,pk):
     return render(request,'product/details.html',context)
 
 
+<<<<<<< HEAD
 def departments(request):
     departments = Department.objects.all()
     return render(request, 'product/departments.html', {'departments': departments})
@@ -42,3 +43,5 @@ def departments(request):
 def department_detail(request, slug):
     department = get_object_or_404(Department, slug=slug)
     return render(request, 'product/department_detail.html', {'department': department})
+=======
+>>>>>>> main
