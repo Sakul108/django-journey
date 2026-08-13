@@ -42,3 +42,5 @@ def departments(request):
 def department_detail(request, slug):
     department = get_object_or_404(Department, slug=slug)
     return render(request, 'product/department_detail.html', {'department': department})
+
+

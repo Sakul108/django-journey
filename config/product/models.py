@@ -5,9 +5,9 @@ from django.utils import timezone
 
 class ProductItem(models.Model):
     PRODUCT_TYPE = [
-        ('E', 'ELECTRONIC'),
+        ('M', 'MEDICINE'),
         ('C', 'CLOTHES'),
-        ('H', 'HOUSEHOLD'),
+        ('P', 'PEOPLE'),
     ]
 
     name = models.CharField(max_length=50)
