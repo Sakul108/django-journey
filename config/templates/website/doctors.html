@@ -1,0 +1,365 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+Our Doctors | MediCare Hospital
+{% endblock %}
+
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<style>
+
+    /* ===== Doctor-specific additions (kept in the same visual language as about.css) ===== */
+
+    .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+    }
+
+    .doctor-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .doctor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(8, 145, 178, 0.14);
+        border-color: #0891b2;
+    }
+
+    .doctor-photo {
+        width: 100%;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0891b2, #0f766e);
+        color: #ffffff;
+        font-size: 3.2rem;
+    }
+
+    .doctor-body {
+        padding: 24px 22px 26px;
+    }
+
+    .doctor-body .doctor-dept {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #0f766e;
+        background: rgba(15, 118, 110, 0.08);
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+    }
+
+    .doctor-body h3 {
+        margin: 0 0 4px;
+        font-size: 1.15rem;
+        color: #0f172a;
+    }
+
+    .doctor-role {
+        font-size: 0.85rem;
+        color: #0891b2;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .doctor-body p.doctor-bio {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: #475569;
+        margin-bottom: 16px;
+    }
+
+    .doctor-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 14px;
+        font-size: 0.82rem;
+        color: #64748b;
+    }
+
+    .doctor-meta span i {
+        color: #0891b2;
+        margin-right: 6px;
+    }
+
+    .doctor-filter-note {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-top: -8px;
+    }
+
+    @media (max-width: 640px) {
+        .doctor-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="about-page">
+
+    <section class="unique-hero">
+
+        <div class="hero-inner">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Meet Our Specialists
+                </div>
+
+                <h1>
+                    The People
+                    <span>Behind Your Care.</span>
+                </h1>
+
+                <p>
+                    Every treatment starts with a trusted expert. Our doctors
+                    combine years of specialized training with a genuine
+                    commitment to listening, understanding, and healing.
+                </p>
+
+                <a href="{% url 'contact' %}" class="hero-button">
+                    Book a Consultation
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-icon">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+
+                <h3>
+                    Experts Across Every Department
+                </h3>
+
+                <p>
+                    From cardiology to pediatrics, our specialists work
+                    together to give you care that's thorough, current,
+                    and personal.
+                </p>
+
+                <div class="hero-card-line"></div>
+
+                <div class="hero-mini-stats">
+
+                    <div class="mini-stat">
+                        <strong>50+</strong>
+                        <span>Expert Doctors</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>12</strong>
+                        <span>Departments</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>15+</strong>
+                        <span>Yrs Avg. Experience</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>15k+</strong>
+                        <span>Patients Served</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="unique-section">
+
+        <div class="section-label">
+            Our Team
+        </div>
+
+        <h2 class="section-heading">
+            Doctors who
+            <span style="color:#0891b2;">
+                take the time.
+            </span>
+        </h2>
+
+        <p class="section-description">
+            Board-certified, deeply experienced, and chosen for their
+            ability to explain, reassure, and treat with equal care.
+        </p>
+
+        <p class="doctor-filter-note">
+            Browse specialists by department, or reach out and we'll help match you with the right doctor.
+        </p>
+
+
+        <div class="doctor-grid">
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Cardiology</span>
+                    <h3>Dr. Anjali Rao</h3>
+                    <div class="doctor-role">Senior Cardiologist, MD</div>
+                    <p class="doctor-bio">
+                        Specializes in interventional cardiology and
+                        preventive heart care, with a focus on long-term
+                        patient wellbeing.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>14 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN, HI, NE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Neurology</span>
+                    <h3>Dr. Samuel Osei</h3>
+                    <div class="doctor-role">Consultant Neurologist, MD</div>
+                    <p class="doctor-bio">
+                        Focused on stroke care, seizure disorders, and
+                        chronic headache management using the latest
+                        diagnostic tools.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>11 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN, FR</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-user-nurse"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Emergency Care</span>
+                    <h3>Dr. Maria Lopez</h3>
+                    <div class="doctor-role">Head of Emergency Medicine</div>
+                    <p class="doctor-bio">
+                        Leads our 24/7 trauma and critical care team,
+                        trained to respond fast when every minute matters.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>18 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN, ES</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-baby"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Pediatrics</span>
+                    <h3>Dr. Priya Sharma</h3>
+                    <div class="doctor-role">Senior Pediatrician, MD</div>
+                    <p class="doctor-bio">
+                        Cares for infants through adolescents, with a gentle
+                        approach to checkups, vaccinations, and growth care.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>9 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN, HI, NE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-bone"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Orthopedics</span>
+                    <h3>Dr. Daniel Kim</h3>
+                    <div class="doctor-role">Orthopedic Surgeon, MD</div>
+                    <p class="doctor-bio">
+                        Treats joint, bone, and sports injuries, from
+                        physiotherapy plans to advanced joint replacement.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>13 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN, KO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo"><i class="fa-solid fa-tooth"></i></div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Dental Care</span>
+                    <h3>Dr. Sarah Thompson</h3>
+                    <div class="doctor-role">Lead Dentist, DDS</div>
+                    <p class="doctor-bio">
+                        Provides complete dental care, from routine
+                        cleanings to cosmetic and restorative procedures.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>10 yrs experience</span>
+                        <span><i class="fa-solid fa-language"></i>EN</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="unique-section">
+
+        <div class="statement">
+
+            <h2>
+                Ready to meet
+                your doctor?
+            </h2>
+
+            <p>
+                Tell us what you need, and we'll connect you with the
+                right specialist for compassionate, expert care.
+            </p>
+
+            <a
+                href="{% url 'contact' %}"
+                class="statement-button"
+            >
+                <i class="fa-solid fa-calendar-check"></i>
+                Book an Appointment
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

@@ -24,6 +24,8 @@ def team(request):
 def services(request):
     return render(request, 'website/services.html')
 
+def doctors(request):
+       return render(request, 'doctors.html')
 
 
 # from django.http import HttpResponse

@@ -1,9 +1,707 @@
-{% extends "layout.html"%}
-{%block title%}
-team
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+Our Doctors | MediCare Hospital
 {% endblock %}
+
+{% block css %}
+
+{% load static %}
+
+<style>
+
+    /* =========================================================
+       Inlined from styles.css (brand tokens + hero/section/card
+       rules), same approach as services.html — the external
+       stylesheet isn't extending on this template, so the rules
+       this page needs live here instead, scoped under
+       .hms-doctors-page so nothing leaks onto other pages.
+    ========================================================== */
+
+    .hms-doctors-page {
+        --color-primary:      #0f766e;
+        --color-secondary:    #0891b2;
+        --color-accent:       #67e8f9;
+        --color-navy:         #082f49;
+        --color-dark:         #0f172a;
+        --color-bg:           #f8fafc;
+        --color-surface:      #ffffff;
+        --color-mint:         #f0fdfa;
+        --color-mint-2:       #ecfeff;
+        --color-border:       #e2e8f0;
+        --color-text:         #0f172a;
+        --color-text-muted:   #64748b;
+
+        --gradient-brand: linear-gradient(135deg, var(--color-navy), var(--color-primary), var(--color-secondary));
+
+        --radius-lg: 28px;
+        --radius-md: 16px;
+
+        background: var(--color-bg);
+        color: var(--color-text);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .hms-doctors-page h1,
+    .hms-doctors-page h2,
+    .hms-doctors-page h3 {
+        color: var(--color-dark);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hms-doctors-page .unique-hero {
+        position: relative;
+        min-height: 620px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background:
+            linear-gradient(110deg, rgba(8, 47, 73, 0.96) 0%, rgba(15, 118, 110, 0.88) 48%, rgba(8, 145, 178, 0.70) 100%),
+            url("{% static 'images/Hospital.png' %}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 0 0 55px 55px;
+    }
+
+    .hms-doctors-page .unique-hero::before {
+        content: "";
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        right: -120px;
+        top: -130px;
+    }
+
+    .hms-doctors-page .unique-hero::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        left: -100px;
+        bottom: -120px;
+    }
+
+    .hms-doctors-page .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: 90%;
+        max-width: 1150px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 70px;
+        align-items: center;
+    }
+
+    .hms-doctors-page .hero-content {
+        color: white;
+    }
+
+    .hms-doctors-page .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 15px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 22px;
+    }
+
+    .hms-doctors-page .hero-content h1 {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 1.02;
+        margin: 0 0 25px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: #fff;
+    }
+
+    .hms-doctors-page .hero-content h1 span {
+        color: var(--color-accent);
+    }
+
+    .hms-doctors-page .hero-content p {
+        max-width: 650px;
+        font-size: 1.12rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 30px;
+    }
+
+    .hms-doctors-page .hero-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 23px;
+        border-radius: 12px;
+        background: white;
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.25s ease;
+    }
+
+    .hms-doctors-page .hero-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        color: var(--color-primary);
+    }
+
+    .hms-doctors-page .hero-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.20);
+        transform: rotate(2deg);
+        transition: 0.3s ease;
+    }
+
+    .hms-doctors-page .hero-card:hover {
+        transform: rotate(0deg) translateY(-8px);
+    }
+
+    .hms-doctors-page .hero-card-icon {
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: var(--color-mint-2);
+        color: var(--color-secondary);
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .hms-doctors-page .hero-card h3 {
+        font-size: 1.35rem;
+        margin-bottom: 10px;
+    }
+
+    .hms-doctors-page .hero-card p {
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        font-size: 0.92rem;
+    }
+
+    .hms-doctors-page .hero-card-line {
+        height: 1px;
+        background: var(--color-border);
+        margin: 22px 0;
+    }
+
+    .hms-doctors-page .hero-mini-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .hms-doctors-page .mini-stat {
+        background: var(--color-bg);
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .hms-doctors-page .mini-stat strong {
+        display: block;
+        font-size: 1.3rem;
+        color: var(--color-primary);
+    }
+
+    .hms-doctors-page .mini-stat span {
+        color: var(--color-text-muted);
+        font-size: 0.78rem;
+    }
+
+    /* ---------- Section shell ---------- */
+
+    .hms-doctors-page .unique-section {
+        width: 90%;
+        max-width: 1100px;
+        margin: 100px auto;
+    }
+
+    .hms-doctors-page .section-label {
+        color: var(--color-secondary);
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .hms-doctors-page .section-heading {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.15;
+        margin: 0 0 18px;
+        letter-spacing: -0.03em;
+    }
+
+    .hms-doctors-page .section-description {
+        color: var(--color-text-muted);
+        max-width: 650px;
+        line-height: 1.8;
+        margin: 0 auto;
+    }
+
+    /* ---------- Doctor grid ---------- */
+
+    .hms-doctors-page .doctor-filter-note {
+        text-align: center;
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        margin-top: -8px;
+    }
+
+    .hms-doctors-page .doctor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+    }
+
+    .hms-doctors-page .doctor-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .hms-doctors-page .doctor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(8, 145, 178, 0.14);
+        border-color: var(--color-secondary);
+    }
+
+    .hms-doctors-page .doctor-photo {
+        width: 100%;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gradient-brand);
+        color: #ffffff;
+        font-size: 3.2rem;
+        overflow: hidden;
+    }
+
+    .hms-doctors-page .doctor-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+    }
+
+    .hms-doctors-page .doctor-body {
+        padding: 24px 22px 26px;
+    }
+
+    .hms-doctors-page .doctor-body .doctor-dept {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        background: rgba(15, 118, 110, 0.08);
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+    }
+
+    .hms-doctors-page .doctor-body h3 {
+        margin: 0 0 4px;
+        font-size: 1.15rem;
+        color: var(--color-dark);
+    }
+
+    .hms-doctors-page .doctor-role {
+        font-size: 0.85rem;
+        color: var(--color-secondary);
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .hms-doctors-page .doctor-body p.doctor-bio {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--color-text-muted);
+        margin-bottom: 16px;
+    }
+
+    .hms-doctors-page .doctor-meta {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid var(--color-border);
+        padding-top: 14px;
+        font-size: 0.82rem;
+        color: var(--color-text-muted);
+    }
+
+    .hms-doctors-page .doctor-meta span i {
+        color: var(--color-secondary);
+        margin-right: 6px;
+    }
+
+    /* ---------- Closing statement ---------- */
+
+    .hms-doctors-page .statement {
+        margin-top: 0;
+        padding: 65px 45px;
+        border-radius: 30px;
+        background: var(--gradient-brand);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hms-doctors-page .statement::before {
+        content: "✚";
+        position: absolute;
+        font-size: 18rem;
+        color: rgba(255, 255, 255, 0.04);
+        right: -20px;
+        bottom: -100px;
+    }
+
+    .hms-doctors-page .statement h2 {
+        position: relative;
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .hms-doctors-page .statement p {
+        position: relative;
+        max-width: 700px;
+        margin: 0 auto 28px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hms-doctors-page .statement-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 25px;
+        background: white;
+        color: var(--color-primary);
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.25s ease;
+    }
+
+    .hms-doctors-page .statement-button:hover {
+        transform: translateY(-4px);
+        color: var(--color-primary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 900px) {
+        .hms-doctors-page .hero-inner {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .hms-doctors-page .hero-card {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .hms-doctors-page .unique-hero {
+            min-height: auto;
+            padding: 80px 20px;
+        }
+
+        .hms-doctors-page .hero-content h1 {
+            font-size: 2.8rem;
+        }
+
+        .hms-doctors-page .doctor-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .hms-doctors-page .statement {
+            padding: 45px 25px;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
 
 {% block content %}
 
-<p style="color: yellow;">this is team page</p>
+<div class="hms-doctors-page">
+
+    <section class="unique-hero">
+
+        <div class="hero-inner">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Meet Our Specialists
+                </div>
+
+                <h1>
+                    The People
+                    <span>Behind Your Care.</span>
+                </h1>
+
+                <p>
+                    Every treatment starts with a trusted expert. Our doctors
+                    combine years of specialized training with a genuine
+                    commitment to listening, understanding, and healing.
+                </p>
+
+                <a href="{% url 'contact' %}" class="hero-button">
+                    Book a Consultation
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-icon">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+
+                <h3>
+                    Experts Across Every Department
+                </h3>
+
+                <p>
+                    From cardiology to pediatrics, our specialists work
+                    together to give you care that's thorough, current,
+                    and personal.
+                </p>
+
+                <div class="hero-card-line"></div>
+
+                <div class="hero-mini-stats">
+
+                    <div class="mini-stat">
+                        <strong>50+</strong>
+                        <span>Expert Doctors</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>12</strong>
+                        <span>Departments</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>15+</strong>
+                        <span>Yrs Avg. Experience</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>15k+</strong>
+                        <span>Patients Served</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="unique-section">
+
+        <div class="section-label">
+            Our Team
+        </div>
+
+        <h2 class="section-heading">
+            Doctors who
+            <span style="color:#0891b2;">
+                take the time.
+            </span>
+        </h2>
+
+        <p class="section-description">
+            Board-certified, deeply experienced, and chosen for their
+            ability to explain, reassure, and treat with equal care.
+        </p>
+
+        <p class="doctor-filter-note">
+            Browse specialists by department, or reach out and we'll help match you with the right doctor.
+        </p>
+
+
+        <div class="doctor-grid">
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/anjali-sharma.jpg' %}" alt="Dr. Anjali Sharma" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-user-doctor'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Cardiology</span>
+                    <h3>Dr. Anjali Sharma</h3>
+                    <div class="doctor-role">Senior Cardiologist, MD</div>
+                    <p class="doctor-bio">
+                        Specializes in interventional cardiology and
+                        preventive heart care, with a focus on long-term
+                        patient wellbeing.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>14 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/rajesh-shrestha.jpg' %}" alt="Dr. Rajesh Shrestha" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-user-doctor'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Neurology</span>
+                    <h3>Dr. Rajesh Shrestha</h3>
+                    <div class="doctor-role">Consultant Neurologist, MD</div>
+                    <p class="doctor-bio">
+                        Focused on stroke care, seizure disorders, and
+                        chronic headache management using the latest
+                        diagnostic tools.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>11 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/sunita-gurung.jpg' %}" alt="Dr. Sunita Gurung" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-user-nurse'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Emergency Care</span>
+                    <h3>Dr. Sunita Gurung</h3>
+                    <div class="doctor-role">Head of Emergency Medicine</div>
+                    <p class="doctor-bio">
+                        Leads our 24/7 trauma and critical care team,
+                        trained to respond fast when every minute matters.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>18 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/priya-thapa.jpg' %}" alt="Dr. Priya Thapa" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-baby'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Pediatrics</span>
+                    <h3>Dr. Priya Thapa</h3>
+                    <div class="doctor-role">Senior Pediatrician, MD</div>
+                    <p class="doctor-bio">
+                        Cares for infants through adolescents, with a gentle
+                        approach to checkups, vaccinations, and growth care.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>9 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/bikash-tamang.jpg' %}" alt="Dr. Bikash Tamang" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-bone'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Orthopedics</span>
+                    <h3>Dr. Bikash Tamang</h3>
+                    <div class="doctor-role">Orthopedic Surgeon, MD</div>
+                    <p class="doctor-bio">
+                        Treats joint, bone, and sports injuries, from
+                        physiotherapy plans to advanced joint replacement.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>13 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-photo">
+                    <img src="{% static 'images/doctors/sabina-karki.jpg' %}" alt="Dr. Sabina Karki" onerror="this.replaceWith(Object.assign(document.createElement('i'), {className: 'fa-solid fa-tooth'}))">
+                </div>
+                <div class="doctor-body">
+                    <span class="doctor-dept">Dental Care</span>
+                    <h3>Dr. Sabina Karki</h3>
+                    <div class="doctor-role">Lead Dentist, DDS</div>
+                    <p class="doctor-bio">
+                        Provides complete dental care, from routine
+                        cleanings to cosmetic and restorative procedures.
+                    </p>
+                    <div class="doctor-meta">
+                        <span><i class="fa-solid fa-briefcase-medical"></i>10 yrs experience</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="unique-section">
+
+        <div class="statement">
+
+            <h2>
+                Ready to meet
+                your doctor?
+            </h2>
+
+            <p>
+                Tell us what you need, and we'll connect you with the
+                right specialist for compassionate, expert care.
+            </p>
+
+            <a
+                href="{% url 'contact' %}"
+                class="statement-button"
+            >
+                <i class="fa-solid fa-calendar-check"></i>
+                Book an Appointment
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
 {% endblock %}
