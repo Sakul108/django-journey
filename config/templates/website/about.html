@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 {% load static %}
 
@@ -6,12 +5,88 @@
 About Us | MediCare Hospital
 {% endblock %}
 
+
 {% block css %}
 
-{% load static %}
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+>
 
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
+<style>
+
+
+
+.hms-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.hms-gallery-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    border-top: 4px solid #0891b2;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.hms-gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.hms-gallery-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.hms-gallery-card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.hms-gallery-card-body h3 {
+    font-size: 1.15rem;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.hms-gallery-card-body p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+
+/* =====================================================
+   SMALL RESPONSIVE ADJUSTMENTS
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .hms-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hms-gallery-card img {
+        height: 200px;
+    }
+}
+
+</style>
 
 {% endblock %}
 
@@ -20,7 +95,10 @@ About Us | MediCare Hospital
 
 <div class="about-page">
 
-    
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
     <section class="unique-hero">
 
@@ -33,10 +111,12 @@ About Us | MediCare Hospital
                     Healthcare With Purpose
                 </div>
 
+
                 <h1>
                     More Than a
                     <span>Hospital.</span>
                 </h1>
+
 
                 <p>
                     MediCare Hospital brings together compassionate
@@ -44,6 +124,7 @@ About Us | MediCare Hospital
                     to better healthcare — creating an experience where
                     patients feel cared for, not just treated.
                 </p>
+
 
                 <a href="{% url 'contact' %}" class="hero-button">
                     Start Your Care
@@ -53,15 +134,19 @@ About Us | MediCare Hospital
             </div>
 
 
+            <!-- HERO CARD -->
+
             <div class="hero-card">
 
                 <div class="hero-card-icon">
                     <i class="fa-solid fa-heart-pulse"></i>
                 </div>
 
+
                 <h3>
                     Care Built Around You
                 </h3>
+
 
                 <p>
                     Every patient has a different story.
@@ -69,7 +154,9 @@ About Us | MediCare Hospital
                     and providing care designed around individual needs.
                 </p>
 
+
                 <div class="hero-card-line"></div>
+
 
                 <div class="hero-mini-stats">
 
@@ -78,15 +165,18 @@ About Us | MediCare Hospital
                         <span>Expert Doctors</span>
                     </div>
 
+
                     <div class="mini-stat">
                         <strong>24/7</strong>
                         <span>Emergency Care</span>
                     </div>
 
+
                     <div class="mini-stat">
                         <strong>200+</strong>
                         <span>Hospital Beds</span>
                     </div>
+
 
                     <div class="mini-stat">
                         <strong>15k+</strong>
@@ -102,11 +192,16 @@ About Us | MediCare Hospital
     </section>
 
 
-   
+
+    <!-- =================================================
+         OUR STORY
+    ================================================== -->
 
     <section class="unique-section">
 
         <div class="story-grid">
+
+            <!-- IMAGE -->
 
             <div class="story-image">
 
@@ -114,6 +209,7 @@ About Us | MediCare Hospital
                     src="{% static 'images/Hospital.png' %}"
                     alt="MediCare Hospital"
                 >
+
 
                 <div class="story-badge">
 
@@ -128,30 +224,42 @@ About Us | MediCare Hospital
             </div>
 
 
+            <!-- STORY CONTENT -->
+
             <div>
 
                 <div class="section-label">
                     Our Story
                 </div>
 
+
                 <h2 class="section-heading">
+
                     Healthcare should feel
                     <br>
+
                     <span style="color:#0891b2;">
                         human.
                     </span>
+
                 </h2>
 
+
                 <p class="section-description">
+
                     MediCare Hospital is built around a simple idea:
                     excellent healthcare begins with people.
                     Our medical professionals combine expertise,
                     technology, and empathy to create a safer and
                     more comfortable healthcare experience.
+
                 </p>
 
 
                 <div class="timeline">
+
+
+                    <!-- TIMELINE ITEM 1 -->
 
                     <div class="timeline-item">
 
@@ -167,6 +275,8 @@ About Us | MediCare Hospital
                     </div>
 
 
+                    <!-- TIMELINE ITEM 2 -->
+
                     <div class="timeline-item">
 
                         <h3>
@@ -180,6 +290,8 @@ About Us | MediCare Hospital
 
                     </div>
 
+
+                    <!-- TIMELINE ITEM 3 -->
 
                     <div class="timeline-item">
 
@@ -204,27 +316,40 @@ About Us | MediCare Hospital
 
 
 
+    <!-- =================================================
+         MISSION & VISION
+    ================================================== -->
+
     <section class="unique-section">
 
         <div class="section-label">
             What Drives Us
         </div>
 
+
         <h2 class="section-heading">
+
             Purpose behind
             <span style="color:#0f766e;">
                 every treatment.
             </span>
+
         </h2>
 
+
         <p class="section-description">
+
             Our mission and vision shape the way we care for
             patients, support families, and build a better
             healthcare environment.
+
         </p>
 
 
         <div class="mission-grid">
+
+
+            <!-- MISSION -->
 
             <div class="mission-card">
 
@@ -232,9 +357,11 @@ About Us | MediCare Hospital
                     <i class="fa-solid fa-bullseye"></i>
                 </div>
 
+
                 <h3>
                     Our Mission
                 </h3>
+
 
                 <p>
                     To provide accessible, compassionate, and
@@ -245,15 +372,19 @@ About Us | MediCare Hospital
             </div>
 
 
+            <!-- VISION -->
+
             <div class="mission-card">
 
                 <div class="mission-icon">
                     <i class="fa-solid fa-eye"></i>
                 </div>
 
+
                 <h3>
                     Our Vision
                 </h3>
+
 
                 <p>
                     To become a trusted healthcare destination
@@ -268,6 +399,7 @@ About Us | MediCare Hospital
     </section>
 
 
+
     <!-- =================================================
          VALUES
     ================================================== -->
@@ -278,15 +410,21 @@ About Us | MediCare Hospital
             Our Principles
         </div>
 
+
         <h2 class="section-heading">
+
             The values behind
             <span style="color:#0891b2;">
                 our care.
             </span>
+
         </h2>
 
 
         <div class="values-wrapper">
+
+
+            <!-- COMPASSION -->
 
             <div class="value">
 
@@ -304,6 +442,8 @@ About Us | MediCare Hospital
             </div>
 
 
+            <!-- TRUST -->
+
             <div class="value">
 
                 <i class="fa-solid fa-shield-heart"></i>
@@ -313,12 +453,14 @@ About Us | MediCare Hospital
                 </h4>
 
                 <p>
-                    Building relationships through
-                    honesty and reliability.
+                    Building relationships through honesty
+                    and reliability.
                 </p>
 
             </div>
 
+
+            <!-- EXCELLENCE -->
 
             <div class="value">
 
@@ -335,6 +477,8 @@ About Us | MediCare Hospital
 
             </div>
 
+
+            <!-- INNOVATION -->
 
             <div class="value">
 
@@ -356,16 +500,16 @@ About Us | MediCare Hospital
     </section>
 
 
- 
+
 
     <section class="unique-section">
 
         <div class="statement">
 
             <h2>
-                Your health.
-                Our commitment.
+                Your health. Our commitment.
             </h2>
+
 
             <p>
                 From everyday healthcare to specialized treatment,
@@ -374,19 +518,130 @@ About Us | MediCare Hospital
                 services.
             </p>
 
+
             <a
                 href="{% url 'contact' %}"
                 class="statement-button"
             >
                 <i class="fa-solid fa-calendar-check"></i>
+
                 Book an Appointment
+
             </a>
 
         </div>
 
     </section>
 
+
+
+   
+
+    <section class="hms-section">
+
+        <div class="hms-gallery-grid">
+
+
+            <!-- PATIENT CARE -->
+
+            <div class="hms-gallery-card">
+
+                <img
+                    src="{% static 'images/smile.png' %}"
+                    alt="Smiling patient with our care team"
+                >
+
+                <div class="hms-gallery-card-body">
+
+                    <h3>
+                        Patient Care
+                    </h3>
+
+                    <p>
+                        Compassionate care tailored to your needs.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SURGERY -->
+
+            <div class="hms-gallery-card">
+
+                <img
+                    src="{% static 'images/surgery.png' %}"
+                    alt="Operating theatre"
+                >
+
+                <div class="hms-gallery-card-body">
+
+                    <h3>
+                        Surgery Wing
+                    </h3>
+
+                    <p>
+                        State-of-the-art surgical facilities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGNOSTICS -->
+
+            <div class="hms-gallery-card">
+
+                <img
+                    src="{% static 'images/test.png' %}"
+                    alt="Diagnostic lab testing"
+                >
+
+                <div class="hms-gallery-card-body">
+
+                    <h3>
+                        Diagnostics
+                    </h3>
+
+                    <p>
+                        Accurate and quick lab evaluations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERT TEAM -->
+
+            <div class="hms-gallery-card">
+
+                <img
+                    src="{% static 'images/doctor.png' %}"
+                    alt="Medical staff at work"
+                >
+
+                <div class="hms-gallery-card-body">
+
+                    <h3>
+                        Expert Team
+                    </h3>
+
+                    <p>
+                        Dedicated medical professionals.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
 </div>
 
 {% endblock %}
-

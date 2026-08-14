@@ -1,22 +1,13 @@
-/* =====================================================
-   MEDICARE HOSPITAL — MASTER STYLESHEET
-   Brand tokens + shared layout (navbar/footer) +
-   page-specific styles (home, about, contact)
-===================================================== */
-
-/* -----------------------------------------------------
-   BRAND TOKENS
------------------------------------------------------ */
 :root {
     /* Color */
-    --color-primary:      #0f766e;   /* deep teal   */
-    --color-secondary:    #0891b2;   /* cyan        */
-    --color-accent:       #67e8f9;   /* light cyan  */
-    --color-navy:         #082f49;   /* deep navy   */
-    --color-dark:         #0f172a;   /* near-black  */
-    --color-bg:           #f8fafc;   /* page bg     */
+    --color-primary:      #0f766e;
+    --color-secondary:    #0891b2;
+    --color-accent:       #67e8f9;
+    --color-navy:         #082f49;
+    --color-dark:         #0f172a;
+    --color-bg:           #f8fafc;
     --color-surface:      #ffffff;
-    --color-mint:         #f0fdfa;   /* soft accent bg */
+    --color-mint:         #f0fdfa;
     --color-mint-2:       #ecfeff;
     --color-border:       #e2e8f0;
     --color-text:         #0f172a;
@@ -24,7 +15,12 @@
     --color-text-soft:    #94a3b8;
 
     /* Gradients */
-    --gradient-brand: linear-gradient(135deg, var(--color-navy), var(--color-primary), var(--color-secondary));
+    --gradient-brand: linear-gradient(
+        135deg,
+        var(--color-navy),
+        var(--color-primary),
+        var(--color-secondary)
+    );
 
     /* Type */
     --font-display: "Lexend", "Segoe UI", sans-serif;
@@ -36,9 +32,11 @@
     --radius-sm: 10px;
 }
 
+
 /* -----------------------------------------------------
    BASE / RESET
 ----------------------------------------------------- */
+
 * {
     box-sizing: border-box;
 }
@@ -50,7 +48,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-display);
     color: var(--color-dark);
     font-weight: 700;
@@ -66,15 +69,19 @@ a {
     outline-offset: 2px;
 }
 
+
 /* =====================================================
    NAVBAR
+   SHARED ACROSS ALL PAGES
 ===================================================== */
+
 .hms-navbar {
-    background: var(--color-surface);
+    background: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     padding: 14px 0;
 }
 
+/* Brand */
 .hms-navbar .navbar-brand {
     display: inline-flex;
     align-items: center;
@@ -82,23 +89,26 @@ a {
     font-family: var(--font-display);
     font-weight: 800;
     font-size: 1.35rem;
-    color: var(--color-dark);
+    color: #0f766e;
     letter-spacing: -0.02em;
+    text-decoration: none;
 }
 
+/* Heart / ECG icon */
 .hms-navbar .brand-mark {
-    width: 40px;
-    height: 40px;
-    display: flex;
+    width: auto;
+    height: auto;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    background: var(--gradient-brand);
-    color: #fff;
-    font-size: 1.1rem;
-    box-shadow: 0 8px 18px rgba(8, 145, 178, 0.35);
+    border-radius: 0;
+    background: none;
+    color: #0f766e;
+    font-size: 1.25rem;
+    box-shadow: none;
 }
 
+/* Navigation links */
 .hms-navbar .nav-link {
     color: #334155;
     font-family: var(--font-body);
@@ -112,34 +122,45 @@ a {
 
 .hms-navbar .nav-link:hover,
 .hms-navbar .nav-link.active {
-    color: var(--color-secondary);
-    background: var(--color-mint);
+    color: #0891b2;
+    background: #f0fdfa;
 }
 
+/* Appointment button */
 .hms-navbar .btn-appointment {
-    background: var(--color-secondary);
+    background: #0891b2;
     color: #fff !important;
     font-weight: 700;
     padding: 9px 22px;
     border-radius: 30px;
-    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
     box-shadow: 0 6px 16px rgba(8, 145, 178, 0.28);
 }
 
 .hms-navbar .btn-appointment:hover {
-    background: var(--color-primary);
+    background: #0f766e;
     color: #fff !important;
     transform: translateY(-2px);
     box-shadow: 0 10px 22px rgba(15, 118, 110, 0.32);
 }
 
+
 /* =====================================================
-   GENERIC PAGE HERO (used by Home + Contact)
+   HOME / MAIN HERO
 ===================================================== */
+
 .hms-hero {
     position: relative;
     background:
-        linear-gradient(110deg, rgba(8, 47, 73, 0.92) 0%, rgba(15, 118, 110, 0.85) 48%, rgba(8, 145, 178, 0.68) 100%),
+        linear-gradient(
+            110deg,
+            rgba(8, 47, 73, 0.92) 0%,
+            rgba(15, 118, 110, 0.85) 48%,
+            rgba(8, 145, 178, 0.68) 100%
+        ),
         url("../images/Hospital.png");
     background-size: cover;
     background-position: center;
@@ -227,9 +248,11 @@ a {
     color: inherit;
 }
 
+
 /* =====================================================
-   SHARED SECTION UTILITIES
+   GENERAL SECTIONS
 ===================================================== */
+
 .hms-section {
     max-width: 1100px;
     margin: 70px auto;
@@ -272,7 +295,11 @@ a {
     line-height: 1.8;
 }
 
-/* Cards grid, reused across Home + Departments */
+
+/* =====================================================
+   CARDS
+===================================================== */
+
 .hms-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -313,6 +340,11 @@ a {
     margin: 0;
 }
 
+
+/* =====================================================
+   PRODUCT / IMAGE CONTAINER
+===================================================== */
+
 .product-img-container {
     width: 100%;
     height: 180px;
@@ -330,6 +362,11 @@ a {
     height: 100%;
     object-fit: cover;
 }
+
+
+/* =====================================================
+   STATS
+===================================================== */
 
 .hms-stats {
     background: var(--color-mint);
@@ -352,9 +389,11 @@ a {
     font-size: 0.9rem;
 }
 
+
 /* =====================================================
    ABOUT PAGE
 ===================================================== */
+
 .about-page {
     background: var(--color-bg);
     color: var(--color-text);
@@ -367,7 +406,12 @@ a {
     align-items: center;
     overflow: hidden;
     background:
-        linear-gradient(110deg, rgba(8, 47, 73, 0.96) 0%, rgba(15, 118, 110, 0.88) 48%, rgba(8, 145, 178, 0.70) 100%),
+        linear-gradient(
+            110deg,
+            rgba(8, 47, 73, 0.96) 0%,
+            rgba(15, 118, 110, 0.88) 48%,
+            rgba(8, 145, 178, 0.70) 100%
+        ),
         url("../images/Hospital.png");
     background-size: cover;
     background-position: center;
@@ -538,6 +582,11 @@ a {
     margin: 100px auto;
 }
 
+
+/* =====================================================
+   ABOUT STORY
+===================================================== */
+
 .story-grid {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
@@ -578,6 +627,11 @@ a {
     font-size: 0.8rem;
 }
 
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
 .timeline {
     margin-top: 35px;
     border-left: 2px solid #bae6fd;
@@ -612,6 +666,11 @@ a {
     line-height: 1.6;
     margin: 0;
 }
+
+
+/* =====================================================
+   MISSION / VISION
+===================================================== */
 
 .mission-grid {
     display: grid;
@@ -675,6 +734,11 @@ a {
     margin: 0;
 }
 
+
+/* =====================================================
+   VALUES
+===================================================== */
+
 .values-wrapper {
     margin-top: 45px;
     display: grid;
@@ -712,6 +776,11 @@ a {
     line-height: 1.5;
     margin: 0;
 }
+
+
+/* =====================================================
+   STATEMENT
+===================================================== */
 
 .statement {
     margin-top: 100px;
@@ -768,9 +837,11 @@ a {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
+
 /* =====================================================
    CONTACT PAGE
 ===================================================== */
+
 .contact-page {
     background: var(--color-bg);
 }
@@ -885,18 +956,19 @@ a {
     transform: translateY(-2px);
 }
 
-@media (max-width: 900px) {
-    .contact-wrap {
-        grid-template-columns: 1fr;
-    }
-}
 
 /* =====================================================
    FOOTER
 ===================================================== */
+
 .hms-footer {
     position: relative;
-    background: linear-gradient(135deg, #061f33 0%, #082f49 50%, #064e5b 100%);
+    background: linear-gradient(
+        135deg,
+        #061f33 0%,
+        #082f49 50%,
+        #064e5b 100%
+    );
     color: #cbd5e1;
     margin-top: 60px;
     overflow: hidden;
@@ -1083,10 +1155,17 @@ a {
     color: white;
 }
 
+
 /* =====================================================
    RESPONSIVE
 ===================================================== */
+
 @media (max-width: 900px) {
+
+    .contact-wrap {
+        grid-template-columns: 1fr;
+    }
+
     .hero-inner {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -1121,7 +1200,9 @@ a {
     }
 }
 
+
 @media (max-width: 600px) {
+
     .unique-hero,
     .hms-hero {
         min-height: auto;
